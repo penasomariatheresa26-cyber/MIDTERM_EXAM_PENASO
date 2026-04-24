@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm - Maria Santos</title>
+    <style>
+        /* TAG SELECTOR */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #000000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: #ff1493;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        header, nav, section, article, aside, footer {
+            padding: 20px;
+        }
+
+        /* ID SELECTOR */
+        #main-header {
+            background: linear-gradient(135deg, #000000 0%, #ff1493 100%);
+            text-align: center;
+            border-bottom: 3px solid #ff69b4;
+        }
+
+        #main-header h1 {
+            color: #ffffff;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        /* CLASS SELECTOR */
+        .content-box {
+            background-color: #1a1a1a;
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+            padding: 25px;
+        }
+
+        /* NAVIGATION TABS - FUNCTIONAL */
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            border-bottom: 3px solid #ff1493;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .tab-btn {
+            background-color: #1a1a1a;
+            color: #ff69b4;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 15px 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tab-btn:hover {
+            background-color: #2d0a1e;
+            color: #ffffff;
+        }
+        .tab-btn.active {
+            background-color: #ff1493;
+            color: #000000;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        /* TAB CONTENT */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-area {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background-color: #000000;
+            min-height: 500px;
+        }
+
+        section {
+            flex: 3;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #0d0d0d;
+            height: fit-content;
+        }
+
+        footer {
+            background-color: #ff1493;
+            color: #000000;
+            text-align: center;
+            font-weight: bold;
+            border-top: 3px solid #000000;
+        }
+
+        button {
+            background-color: #ff1493;
+            color: #000000;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 5px 10px 0;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #ff69b4;
+            box-shadow: 0 0 10px #ff1493;
+            transform: scale(1.05);
+        }
+
+        input[type="text"], textarea {
+            background-color: #0d0d0d;
+            border: 2px solid #ff1493;
+            color: #ff69b4;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1em;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px #ff1493;
+        }
+
+        label {
+            color: #ff69b4;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        hr {
+            border: 1px solid #ff1493;
+            margin: 20px 0;
+        }
+
+        #output-text, #name-display {
+            background-color: #0d0d0d;
+            padding: 12px;
+            border-left: 4px solid #ff1493;
+            border-radius: 5px;
+            color: #ffb6c1;
+            min-height: 20px;
+            margin: 10px 0;
+        }
+
+        .info-card {
+            background-color: #2d0a1e;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #ff1493;
+        }
+
+        ul {
+            margin-left: 20px;
+            color: #ffb6c1;
+        }
+        ul li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="main-header">
+        <h1>MARIA SANTOS | WEB DEV MIDTERM</h1>
+    </header>
+
+    <!-- FUNCTIONAL NAVIGATION TABS -->
+    <nav>
+        <button class="tab-btn active" data-tab="home">HOME</button>
+        <button class="tab-btn" data-tab="javascript">JAVASCRIPT</button>
+        <button class="tab-btn" data-tab="about">ABOUT</button>
+        <button class="tab-btn" data-tab="contact">CONTACT</button>
+    </nav>
+
+    <div class="main-area">
+        <!-- SECTION -->
+        <section>
+            <!-- TAB 1: HOME -->
+            <article class="content-box tab-content active" id="home">
+                <h2>Welcome to My Midterm Project</h2>
+                <p id="name-display">Loading student data...</p>
+                <div class="info-card">
+                    <h3>Project Overview</h3>
+                    <p>This webpage demonstrates HTML5 structure, CSS styling, JavaScript interactivity, and Node.js integration.</p>
+                    <p><strong>Theme:</strong> Pink & Black Design</p>
+                    <p><strong>Features:</strong> Functional tabs, dynamic content, user input handling, and event management.</p>
+                </div>
+                <button id="alertBtn">Show Welcome Alert</button>
+            </article>
+
+            <!-- TAB 2: JAVASCRIPT -->
+            <article class="content-box tab-content" id="javascript">
+                <h2>JavaScript Functionality Demo</h2>
+                <p>All Part II requirements demonstrated here:</p>
+                
+                <div class="info-card">
+                    <h3>A. Variables & Output</h3>
+                    <p>Student info loaded from JavaScript variables above ↑</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>B. Button Function</h3>
+                    <button id="alertBtn2">Click for Alert</button>
+                </div>
+
+                <div class="info-card">
+                    <h3>C. User Input Handling</h3>
+                    <label for="userInput">Type Something:</label>
+                    <input type="text" id="userInput" placeholder="Type here and watch it update...">
+                    <p id="output-text">Your input will appear here in real-time</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>D. Event Handling</h3>
+                    <button id="changeBtn">Toggle Article Theme</button>
+                    <p>Click to change colors dynamically</p>
+                </div>
+            </article>
+
+            <!-- TAB 3: ABOUT -->
+            <article class="content-box tab-content" id="about">
+                <h2>About This Project</h2>
+                <div class="info-card">
+                    <h3>Part I - HTML5 & CSS</h3>
+                    <ul>
+                        <li>Semantic HTML5: header, nav, section, article, aside, footer</li>
+                        <li>CSS Selectors: tag, class, ID</li>
+                        <li>Styling: background-color, font-family, padding, margins</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Part II - JavaScript</h3>
+                    <ul>
+                        <li>Variables & Output Display</li>
+                        <li>Button Click Functions</li>
+                        <li>Real-time Input Handling</li>
+                        <li>Dynamic Event Management</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Part III - Node.js</h3>
+                    <p>Run <code>node student.js</code> in terminal to see console output with student details.</p>
+                </div>
+            </article>
+
+            <!-- TAB 4: CONTACT -->
+            <article class="content-box tab-content" id="contact">
+                <h2>Contact Information</h2>
+                <div class="info-card">
+                    <h3>Student Details</h3>
+                    <p><strong>Name:</strong> Maria Santos</p>
+                    <p><strong>Course:</strong> BS Information Technology</p>
+                    <p><strong>Year & Section:</strong> 2nd Year - BSIT-2A</p>
+                    <p><strong>Email:</strong> maria.santos@student.edu</p>
+                </div>
+                <div class="info-card">
+                    <h3>Project Links</h3>
+                    <p>Links will be updated after hosting:</p>
+                    <p>GitHub: Check footer comments</p>
+                    <p>Neocities: Check footer comments</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ASIDE -->
+        <aside class="content-box">
+            <h3>Quick Stats</h3>
+            <p><strong>Year:</strong> 2nd Year</p>
+            <p><strong>Section:</strong> BSIT-2A</p>
+            <p><strong>Subject:</strong> Web Dev</p>
+            <p><strong>Status:</strong> <span id="status-text">Active</span></p>
+            <hr>
+            <h3>Navigation</h3>
+            <p>Use the pink tabs above to switch between sections.</p>
+            <button id="resetBtn">Reset All</button>
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2023 THERESA MIDTERM LABORATORY EXAM </p>
+        <!-- PART IV - HOSTING LINKS 
+        GitHub: https://yourusername.github.io/midterm-santos-maria/
+        Neocities: https://yourusername.neocities.org
+        -->
+    </footer>
+
+    <!-- JAVASCRIPT - ALL FUNCTIONAL -->
+    <script>
+        // ===== TAB FUNCTIONALITY =====
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.getAttribute('data-tab');
+                
+                // Remove active from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+        // ===== PART II: JAVASCRIPT REQUIREMENTS =====
+        // A. VARIABLES AND OUTPUT - 10pts
+        const studentName = "Maria Theresa C Penaso"; // CHANGE TO YOUR NAME
+        const studentCourse = "BS Information Technology"; // CHANGE TO YOUR COURSE
+        const displayElement = document.getElementById("name-display");
+        displayElement.innerHTML = `<strong>Student:</strong> ${studentName} <br> <strong>Course:</strong> ${studentCourse}`;
+
+        // B. BUTTON FUNCTION - 10pts
+        const alertButton = document.getElementById("alertBtn");
+        const alertButton2 = document.getElementById("alertBtn2");
+        function showAlert() {
+            alert(`Hello ${studentName}! Welcome to your Midterm Exam page.\nCourse: ${studentCourse}`);
+        }
+        alertButton.onclick = showAlert;
+        alertButton2.onclick = showAlert;
+
+        // C. USER INPUT - 10pts
+        const inputBox = document.getElementById("userInput");
+        const outputParagraph = document.getElementById("output-text");
+        
+        function handleInput() {
+            let userText = inputBox.value;
+            if (userText === "") {
+                outputParagraph.innerText = "Your input will appear here in real-time";
+            } else {
+                outputParagraph.innerHTML = `<strong>Live Output:</strong> ${userText}`;
+            }
+        }
+        inputBox.addEventListener("input", handleInput);
+
+        // D. EVENT HANDLING - 10pts
+        const changeButton = document.getElementById("changeBtn");
+        let isPink = true;
+        changeButton.addEventListener("click", function() {
+            const activeArticle = document.querySelector('.tab-content.active');
+            const h2 = activeArticle.querySelector("h2");
+            const statusText = document.getElementById("status-text");
+            
+            if (isPink) {
+                activeArticle.style.backgroundColor = "#2d0a1e";
+                activeArticle.style.borderColor = "#ff69b4";
+                h2.style.color = "#ff69b4";
+                statusText.innerText = "Dark Mode";
+                statusText.style.color = "#ff69b4";
+                isPink = false;
+            } else {
+                activeArticle.style.backgroundColor = "#1a1a1a";
+                activeArticle.style.borderColor = "#ff1493";
+                h2.style.color = "#ff1493";
+                statusText.innerText = "Active";
+                statusText.style.color = "#ffffff";
+                isPink = true;
+            }
+        });
+
+        // RESET BUTTON
+        document.getElementById("resetBtn").addEventListener("click", () => {
+            inputBox.value = "";
+            outputParagraph.innerText = "Your input will appear here in real-time";
+            alert("All inputs reset!");
+        });
+    </script>
+</body>
+</html>
